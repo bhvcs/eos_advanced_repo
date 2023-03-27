@@ -46,19 +46,11 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen>{
                                 text:'Welcome ',
                                 style: TextStyle(letterSpacing:  1.0, fontSize: 25, color: Colors.white),
                                 children: [
-                                  if(isSignUpScreen)
-                                    TextSpan(
+                                  TextSpan(
 // TODO : letter spacing 1.0, font size 25, color white, bold
-                                      text:'to EOS chat',
-                                      style: TextStyle(letterSpacing:  1.0, fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold  ),
-
-                                    )
-                                  else
-                                    TextSpan(
-// TODO : letter spacing 1.0, font size 25, color white, bold
-                                      text:'back',
-                                      style: TextStyle(letterSpacing:  1.0, fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold  ),
-                                    )
+                                    text: isSignUpScreen? 'to EOS chat!': 'back',
+                                    style: TextStyle(letterSpacing:  1.0, fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold  ),
+                                  )
                                 ]
                             )
                         ),
@@ -68,13 +60,7 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen>{
 // TODO : height 5.0으로 글 사이 간격 주기
                           height: 5.0,
                         ),
-                        if(isSignUpScreen)
-                          Text('Signup to continue',
-                            style: TextStyle(letterSpacing: 1.0, color: Colors.white,),
-// TODO : spacing 1.0, color white
-                          )
-                        else
-                          Text('Signin to continue',
+                         Text( isSignUpScreen? 'Signup to continue' :'Signin to continue',
                             style: TextStyle(letterSpacing: 1.0, color: Colors.white,),
 // TODO : spacing 1.0, color white
                           )
@@ -85,8 +71,8 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen>{
             Positioned(
                 top: 150,
 // TODO : top 150
-                child: Container(
-                  height: 280.0,
+                child: AnimatedContainer(
+                  height: isSignUpScreen? 280.0 : 250.0,
                   padding: EdgeInsets.all(20),
                   width: MediaQuery.of(context).size.width -40,
                   margin: EdgeInsets.symmetric(horizontal: 20.0),
@@ -106,8 +92,8 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen>{
                       ]
                   ),
 
-
-
+                  curve: Curves.easeIn,
+                  duration: Duration(milliseconds: 500),
                   child: Column(
                       children: [
                         Row(
@@ -172,6 +158,7 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen>{
 
 
                         Container(
+                          margin: EdgeInsets.only(top: 20),
                             child: Form(
                               child: Column(
                                   children: [
@@ -245,10 +232,12 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen>{
 // TODO : borderside 색은 palette의 textColot1
 // TODO : border radius는 모두 35
                                         ),),)]),))]),)),
-            Positioned(
-              top: 400,
+            AnimatedPositioned(
+              top: isSignUpScreen? 430: 390,
               right: 0,
               left: 0,
+              curve: Curves.easeIn,
+              duration: Duration(milliseconds: 500),
               child: Center(
                 child:Container(
                   padding: EdgeInsets.all(15),
